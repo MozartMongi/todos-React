@@ -149,7 +149,7 @@ function MainPage () {
                 <div className="row text-center ml-4 " id="todo-list">
                     {
                         data.map(todo => (
-                            <Todos key={todo.id} title={todo.title} description={todo.description} status={todo.status} date={todo.date} id={todo.id} deleteTodo={deleteTodo.bind(deleteTodo, todo.id)}/>
+                            <Todos key={todo.id} title={todo.title} description={todo.description} status={todo.status} date={todo.date} id={todo.id} deleteTodo={deleteTodo.bind(deleteTodo, todo.id)} fetch={fetch}/>
                         ))
                     }
                 </div>
