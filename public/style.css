@@ -1,0 +1,38 @@
+.login-table {
+    width: 200px;
+}
+.register-table {
+    width: 200px;
+}
+#register-form {
+    max-height: 100vh;
+}
+.jumbotron {
+    background-image: url(img/8294.jpg);
+    background-size: cover;
+    background-position-y: center;
+    height: 100;
+    margin-top: 0%;
+    padding: 100;
+}
+
+#main-page {
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+#jumbotron {
+    padding: 100;
+    margin-top: 55px;
+    margin-bottom: 0%;
+}
+#container-addform {
+    width: 600px;
+    opacity: 90%;;
+}
+.todo-button {
+    font-size: 26px;
+}
+.larger-text {
+    font-size: larger;
+}
