@@ -39,7 +39,7 @@ import axios from 'axios'
                
             })
         }
-        if(loginStat) {
+        if(loginStat || localStorage.getItem('token_access') ) {
             return (
                 <Redirect to= {{pathname: "/mainpage"}} />
             )

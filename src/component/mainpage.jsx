@@ -102,60 +102,66 @@ function MainPage () {
             console.log(err)
         })
     },[]) 
-    return (
-        <Fragment>
-            <nav className="navbar navbar-dark bg-primary justify-content-between fixed-top">
-                <h2 className="navbar-brand">Fancy To-Do</h2>
-                <div className="form-inline">
-                    <Link to='/'>
-                        <button onClick={Logout} id="btn-logout" className="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit">Logout</button>
-                    </Link>
-                </div>
-            </nav>
-            <div id="main-page" className='mt-4'>
-            <div id="jumbotron" className="row jumbotron jumbotron-fluid">
-                <div className="container ml-5">
-                    <div id="addNew-form">
-                        <div id='container-addform' className="container rounded bg-light shadow">
-                        <h1>To Do List</h1>
-                        
-                        <div className="form-group row">
-                            <label className="col-sm-2 col-form-label" htmlFor="input-title">Title</label>
-                            <input onChange={titleInput}  type="text" id="input-title" value={title}/>
-                        </div>
-                        <br/>
-                        <div className="form-group row">
-                            <label className="col-sm-2 col-form-label" htmlFor="input-description">Description</label>
-                            <input onChange={descInput} type="text" id="input-description" value={desc}/>
-                        </div>
+    if(!localStorage.getItem('token_access')){
+        return (
+            <Redirect to= {{pathname: "/"}} />
+        )
+    } else {
+        return (
+            <Fragment>
+                <nav className="navbar navbar-dark bg-primary justify-content-between fixed-top">
+                    <h2 className="navbar-brand">Fancy To-Do</h2>
+                    <div className="form-inline">
+                        <Link to='/'>
+                            <button onClick={Logout} id="btn-logout" className="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit">Logout</button>
+                        </Link>
+                    </div>
+                </nav>
+                <div id="main-page" className='mt-4'>
+                <div id="jumbotron" className="row jumbotron jumbotron-fluid">
+                    <div className="container ml-5">
+                        <div id="addNew-form">
+                            <div id='container-addform' className="container rounded bg-light shadow">
+                            <h1>To Do List</h1>
                             
+                            <div className="form-group row">
+                                <label className="col-sm-2 col-form-label" htmlFor="input-title">Title</label>
+                                <input onChange={titleInput}  type="text" id="input-title" value={title}/>
+                            </div>
                             <br/>
-                        <div className="form-group row">
-                            <label className="col-sm-2 col-form-label" htmlFor="input-status">Status</label>
-                            <input onChange={statusInput}  type="text" id="input-status" value={status} />
-                        </div>
-                            <br/>
-                        <div className="form-group row">
-                            <label className="col-sm-2 col-form-label" htmlFor="input-date">Due Date</label>
-                            <input onChange={dateInput} type="date" id="input-date" value={date} />
-                        </div>
-                            <br/>
-                            <button onClick={submitAddNew} type="submit" className="btn-lg mb-3">Add New</button>
-                        </div>
-                        </div>
-                    </div>   
+                            <div className="form-group row">
+                                <label className="col-sm-2 col-form-label" htmlFor="input-description">Description</label>
+                                <input onChange={descInput} type="text" id="input-description" value={desc}/>
+                            </div>
+                                
+                                <br/>
+                            <div className="form-group row">
+                                <label className="col-sm-2 col-form-label" htmlFor="input-status">Status</label>
+                                <input onChange={statusInput}  type="text" id="input-status" value={status} />
+                            </div>
+                                <br/>
+                            <div className="form-group row">
+                                <label className="col-sm-2 col-form-label" htmlFor="input-date">Due Date</label>
+                                <input onChange={dateInput} type="date" id="input-date" value={date} />
+                            </div>
+                                <br/>
+                                <button onClick={submitAddNew} type="submit" className="btn-lg mb-3">Add New</button>
+                            </div>
+                            </div>
+                        </div>   
+                    </div>
+                    <br/>
+                    <div className="row text-center ml-4 " id="todo-list">
+                        {
+                            data.map(todo => (
+                                <Todos key={todo.id} title={todo.title} description={todo.description} status={todo.status} date={todo.date} id={todo.id} deleteTodo={deleteTodo.bind(deleteTodo, todo.id)} fetch={fetch}/>
+                            ))
+                        }
+                    </div>
                 </div>
-                <br/>
-                <div className="row text-center ml-4 " id="todo-list">
-                    {
-                        data.map(todo => (
-                            <Todos key={todo.id} title={todo.title} description={todo.description} status={todo.status} date={todo.date} id={todo.id} deleteTodo={deleteTodo.bind(deleteTodo, todo.id)} fetch={fetch}/>
-                        ))
-                    }
-                </div>
-            </div>
-        </Fragment>
-    )
+            </Fragment>
+        )
+    }
 }
 
 export default MainPage
